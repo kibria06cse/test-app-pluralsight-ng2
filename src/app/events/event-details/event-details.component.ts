@@ -15,6 +15,8 @@ import { IEvent, ISession } from '../shared/index'
 export class EventDetailsComponent {
   event:IEvent
   addMode:boolean
+  filterBy: string = 'all';
+  sortBy: string = 'votes';
 
   constructor(private eventService:EventService, private route:ActivatedRoute) {
 
@@ -27,7 +29,7 @@ export class EventDetailsComponent {
     this.addMode = true
   }
 
-  saveNewSessionA(session:ISession) {
+  saveNewSession(session:ISession) {
     const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id));
     session.id = nextId + 1
     this.event.sessions.push(session)
